@@ -290,7 +290,7 @@
 		mob.lastarea = get_area(mob.loc)
 
 	//We are now going to move
-	mob.moving = TRUE
+	mob.moving = 1
 
 	direction = mob.AdjustMovementDirection(direction)
 	var/old_turf = get_turf(mob)
@@ -309,7 +309,7 @@
 	for (var/obj/item/grab/G in mob.grabbed_by)
 		G.adjust_position()
 	*/
-	mob.moving = FALSE
+	mob.moving = 0
 
 	mob.update_cursor()
 
