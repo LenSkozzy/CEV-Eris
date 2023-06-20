@@ -22,6 +22,14 @@
 	if(blocking)
 		tally += 1
 
+	if(recoil)
+		var/obj/item/gun/G = get_active_hand()
+		if(istype(G))
+			var/datum/recoil/R = G.recoil
+			tally += CLAMP(round(recoil) / (60 / R.getRating(RECOIL_TWOHAND)), 0, 8) // Scales with the size of the gun - bigger guns slow you more
+		else
+			tally += CLAMP(round(recoil) / 20, 0, 8) // Lowest possible while holding a gun
+
 	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C && C.active)
 		var/obj/item/cruciform_upgrade/upgrade = C.upgrade
